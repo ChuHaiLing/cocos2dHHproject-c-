@@ -1,0 +1,94 @@
+<Solution>
+  <PropertyGroup Name="HHProject" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="Resources">
+          <Folder Name="background">
+            <Image Name="background.png" />
+            <Image Name="bg_001.png" />
+            <Image Name="bg_002.png" />
+            <Image Name="bg_003.png" />
+            <Image Name="bg_004.png" />
+          </Folder>
+          <Folder Name="fonts">
+            <TTF Name="Marker Felt.ttf" />
+            <Fnt Name="txtFont.fnt" />
+          </Folder>
+          <Folder Name="hero">
+            <Image Name="fly_0001.png" />
+            <Image Name="fly_0002.png" />
+            <Image Name="fly_0003.png" />
+            <Image Name="fly_0004.png" />
+            <Image Name="fly_0005.png" />
+            <Image Name="fly_0006.png" />
+            <Image Name="fly_0007.png" />
+            <Image Name="fly_0008.png" />
+            <Image Name="fly_0009.png" />
+            <Image Name="fly_0010.png" />
+            <Image Name="fly_0011.png" />
+            <Image Name="fly_0012.png" />
+            <Image Name="fly_0013.png" />
+            <Image Name="fly_0014.png" />
+            <Image Name="fly_0015.png" />
+            <Image Name="fly_0016.png" />
+            <Image Name="fly_0017.png" />
+            <Image Name="fly_0018.png" />
+            <Image Name="fly_0019.png" />
+            <Image Name="fly_0020.png" />
+          </Folder>
+          <Folder Name="item">
+            <Image Name="food_001.png" />
+            <Image Name="food_002.png" />
+            <Image Name="food_003.png" />
+            <Image Name="food_004.png" />
+            <Image Name="food_005.png" />
+            <Image Name="food_006.png" />
+            <Image Name="food_007.png" />
+          </Folder>
+          <Folder Name="obstacle">
+            <Image Name="obstacle_001_crash.png" />
+            <Image Name="obstacle_001_fly.png" />
+            <Image Name="obstacle_002_crash.png" />
+            <Image Name="obstacle_002_fly.png" />
+            <Image Name="obstacle_003_crash.png" />
+            <Image Name="obstacle_003_fly.png" />
+          </Folder>
+          <Folder Name="sounds">
+            <Audio Name="bgGame.mp3" />
+            <Audio Name="bgWelcome.mp3" />
+            <Audio Name="coffee.mp3" />
+            <Audio Name="eat.mp3" />
+            <Audio Name="hit.mp3" />
+            <Audio Name="hurt.mp3" />
+            <Audio Name="lose.mp3" />
+            <Audio Name="mushroom.mp3" />
+          </Folder>
+          <Folder Name="textures">
+            <Image Name="btn_about.png" />
+            <Image Name="btn_back.png" />
+            <Image Name="btn_main.png" />
+            <Image Name="btn_pause.png" />
+            <Image Name="btn_play.png" />
+            <Image Name="btn_replay.png" />
+            <Image Name="btn_snd_off.png" />
+            <Image Name="btn_start.png" />
+            <Image Name="img_game_title.png" />
+            <Image Name="img_hero.png" />
+            <Image Name="img_snd_on_001.png" />
+            <Image Name="img_snd_on_002.png" />
+            <Image Name="img_snd_on_003.png" />
+            <Image Name="particle_force.png" />
+            <Image Name="watchout_001.png" />
+            <Image Name="watchout_002.png" />
+            <Image Name="watchout_003.png" />
+            <Image Name="watchout_004.png" />
+            <Image Name="watchout_005.png" />
+          </Folder>
+        </Folder>
+        <Project Name="StartScene.csd" Type="Scene" />
+        <Project Name="MainScene.csd" Type="Scene" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
