@@ -73,11 +73,19 @@ protected:
     // 開始遊戲
     void startGame();
     
+    // 英雄進場
+    void heroInSceneAction();
+    
+    // 抖屏
+    void shakeWindows(float dt);
+    
     // touchPos設置於屏幕正中央 center
     cocos2d::Vec2 touchPos;
     
     // 螢幕的Size
     cocos2d::Size winSize;
+    
+    float shakeTime;
 };
 
 #endif /* MainGameScene_hpp */

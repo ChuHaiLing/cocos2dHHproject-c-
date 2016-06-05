@@ -53,7 +53,9 @@ bool MainScene::init()
     // Hero設置
     mHero = Hero::create();
     this->addChild(mHero, 2);
-    mHero->setPosition(200, 200);
+    
+    // Hero的初始位置為 螢幕外, 高為螢幕的一半
+    mHero->setPosition(-200, winSize.height / 2);
     
     // 螢幕位置賦值
     winSize = Director::getInstance()->getWinSize();
@@ -122,6 +124,10 @@ bool MainScene::onTouchBegan(Touch *touch, Event *unused_event)
     
     touchPos = touch->getLocation();
 //    log("onTouchBegan x:%f y:%f", touchPos.x, touchPos.y);
+    
+    // 螢幕抖動的時間賦值
+    //shakeTime = 2.0f;
+    
     return true;
 }
 
@@ -151,7 +157,8 @@ void MainScene::gameStep(float dt)
     // hero的移動更新
     mHero->folloTounh(touchPos);
     
-    log("game Start!");
+    shakeWindows(dt);
+    //log("game Start!");
 }
 
 // 開始遊戲前的過場時間
@@ -164,5 +171,39 @@ void MainScene::startGame()
 
 void MainScene::onEnterTransitionDidFinish()
 {
-    startGame();
+    //startGame();
+    heroInSceneAction();
+}
+
+// Hero進場動畫
+void MainScene::heroInSceneAction()
+{
+    auto* toAct = EaseSineOut::create(MoveTo::create        // EaseSineOut 靠近目標點時速度緩慢
+                                      (2.0f,                // 過程時間
+                                       Vec2(winSize.width / 4, winSize.height / 2)));   // 移動到的位置
+    // 回調
+    auto* callback = CallFunc::create([=]()
+    {
+        startGame();
+        addAllEventListener();
+    });
+    mHero->runAction(Sequence::create(toAct, callback, nullptr));
+}
+
+void MainScene::shakeWindows(float dt)
+{
+    if(shakeTime <= 0)
+    {
+        this->setPosition(0, 0);
+        return;
+    }
+    else
+    {
+        shakeTime -= dt;
+    }
+    
+    float dx = CCRANDOM_0_1() * 8;
+    float dy = CCRANDOM_0_1() * 8;
+    
+    this->setPosition(dx, dy);
 }
