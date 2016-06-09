@@ -37,6 +37,10 @@ bool MainScene::init()
 {
     Layer::init();
     
+    // 滾動背景
+    mBackground = BackgroundScene::create();
+    this->addChild(mBackground, 0);
+    
     layer = CSLoader::createNode("MainScene.csb");
     this->addChild(layer);
 //    layer->setTouchEnabled(false);
@@ -45,12 +49,6 @@ bool MainScene::init()
     fontLive = dynamic_cast<TextBMFont*>(layer->getChildByName("leves_bmp"));
     fontDist = dynamic_cast<TextBMFont*>(layer->getChildByName("distance_bmp"));
     fontScore = dynamic_cast<TextBMFont*>(layer->getChildByName("score_bmp"));
-
-    // 滾動背景
-    mBackground = BackgroundScene::create();
-    this->addChild(mBackground, 1);
-    
-    
     
     // Hero設置
     mHero = Hero::create();

@@ -16,10 +16,10 @@ BackgroundScene::~BackgroundScene()
 {
 }
 
-//
-const float BackgroundScene::MOVE_VX_MIN = 10;
-const float BackgroundScene::MOVE_VX_MAX = 30;
-const float BackgroundScene::MAP_WIDTH = 1334;      // 1334
+////
+//const float BackgroundScene::MOVE_VX_MIN = 10;
+//const float BackgroundScene::MOVE_VX_MAX = 30;
+//const float BackgroundScene::MAP_WIDTH = 1334;      // 1334
 
 Scene* BackgroundScene::createScene()
 {
@@ -115,8 +115,8 @@ void BackgroundScene::update(float time)
     CCSprite* temMap1 = (CCSprite*)this->getChildByTag(MAP_1_Tag);
     CCSprite* temMap2 = (CCSprite*)this->getChildByTag(MAP_2_Tag);
     
-    temMap1->setPositionX(temMap1->getPositionX() - 5);
-    temMap2->setPositionX(temMap2->getPositionX() - 5);
+    temMap1->setPositionX(temMap1->getPositionX() - 10);
+    temMap2->setPositionX(temMap2->getPositionX() - 10);
     
     if(temMap1->getPositionX() + temMap1->getContentSize().width/2 <= origin.x)
     {
@@ -138,44 +138,44 @@ void BackgroundScene::onExit()
 }
 
 
-// 定時器
-void BackgroundScene::step(float dt)
-{
-    move(mScrollDict["bg_001_1"], mScrollDict["bg_001_2"], 0.5f);
-    move(mScrollDict["bg_002_1"], mScrollDict["bg_002_2"], 0.6f);
-    move(mScrollDict["bg_003_1"], mScrollDict["bg_003_2"], 0.8f);
-    move(mScrollDict["bg_004_1"], mScrollDict["bg_004_2"], 1.0f);
-}
-
-// 設置地圖移動的速度
-void BackgroundScene::setVx(float val)
-{
-    this->vx = val;
-}
-
-// 獲取地圖速度
-float BackgroundScene::getVx() const
-{
-    return vx;
-}
-
-// 單圖移動
-void BackgroundScene::move(cocos2d::Sprite* bg_1, cocos2d::Sprite* bg_2, float vxScale)
-{
-    log("move");
-    float vx_1 = bg_1->getPositionX() - vx * vxScale;
-    float vx_2 = bg_2->getPositionX() - vx * vxScale;
-    
-    // 出界的場合
-    if(vx_1 <= -MAP_WIDTH)
-    {
-        vx_1 = vx_2 + MAP_WIDTH;
-    }
-    else if(vx_2 <= -MAP_WIDTH)
-    {
-        vx_2 = vx_1 + MAP_WIDTH;
-    }
-    
-    bg_1->setPositionX(vx_1);
-    bg_2->setPositionX(vx_2);
-}
+//// 定時器
+//void BackgroundScene::step(float dt)
+//{
+//    move(mScrollDict["bg_001_1"], mScrollDict["bg_001_2"], 0.5f);
+//    move(mScrollDict["bg_002_1"], mScrollDict["bg_002_2"], 0.6f);
+//    move(mScrollDict["bg_003_1"], mScrollDict["bg_003_2"], 0.8f);
+//    move(mScrollDict["bg_004_1"], mScrollDict["bg_004_2"], 1.0f);
+//}
+//
+//// 設置地圖移動的速度
+//void BackgroundScene::setVx(float val)
+//{
+//    this->vx = val;
+//}
+//
+//// 獲取地圖速度
+//float BackgroundScene::getVx() const
+//{
+//    return vx;
+//}
+//
+//// 單圖移動
+//void BackgroundScene::move(cocos2d::Sprite* bg_1, cocos2d::Sprite* bg_2, float vxScale)
+//{
+//    log("move");
+//    float vx_1 = bg_1->getPositionX() - vx * vxScale;
+//    float vx_2 = bg_2->getPositionX() - vx * vxScale;
+//    
+//    // 出界的場合
+//    if(vx_1 <= -MAP_WIDTH)
+//    {
+//        vx_1 = vx_2 + MAP_WIDTH;
+//    }
+//    else if(vx_2 <= -MAP_WIDTH)
+//    {
+//        vx_2 = vx_1 + MAP_WIDTH;
+//    }
+//    
+//    bg_1->setPositionX(vx_1);
+//    bg_2->setPositionX(vx_2);
+//}
