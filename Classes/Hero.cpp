@@ -47,23 +47,35 @@ bool Hero::init()
 void Hero::addFlyAction()
 {
     
-    auto hero = Sprite::create("Resources/hero/fly_0001.png");
-    this->addChild(hero, 2);
-//    Vector<SpriteFrame*>frameList;
-//    char fileName[60];
-//    
-//    for(int i = 1; i <= 20; i++)
-//    {
-//        sprintf(fileName, "Resources/res/Resources/hero/fly_%04d.png", i);
+//    auto hero = Sprite::create("Resources/hero/fly_0001.png");
+//    this->addChild(hero, 2);
+    Vector<SpriteFrame*>frameList;
+    auto spriteFrameCache = SpriteFrameCache::getInstance();
+    char fileName[256] = {0};
+    
+    for(int i = 1; i <= 20; i++)
+    {
+        sprintf(fileName, "Resources/hero/fly_%04d.png", i);
+        
+        // 155, 77是图片的大小，貌似这样直接设定是不好的；但是还必须提供这个参数
+        // 应该给这个Rect参数提供一个默认参数，默认加载整个图片
+        SpriteFrame *frame = SpriteFrame::create(fileName, Rect(0, 0, 155, 77));
+        
+        // 加入SpriteFrameCache中
+        spriteFrameCache->addSpriteFrame(frame, fileName);
+        frameList.pushBack(frame);
+        
+        
 //        auto* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(fileName);
 //        frameList.pushBack(frame);
-//    }
-//    
-//    auto* anim = Animation::createWithSpriteFrames(frameList, 0.05f);
-//    auto* ani = Animate::create(anim);
-//    auto* rep = RepeatForever::create(ani);
-//    
-//    this->runAction(rep);
+    }
+    
+    // 參數為播放速度
+    auto* anim = Animation::createWithSpriteFrames(frameList, 0.05f);
+    auto* ani = Animate::create(anim);
+    auto* rep = RepeatForever::create(ani);
+    
+    this->runAction(rep);
 }
 
 void Hero::folloTounh(const cocos2d::Vec2& pos)
