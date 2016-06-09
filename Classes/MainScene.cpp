@@ -47,8 +47,10 @@ bool MainScene::init()
     fontScore = dynamic_cast<TextBMFont*>(layer->getChildByName("score_bmp"));
 
     // 滾動背景
-    //    mBackground = BackgroundScene::create();
-    //    this->addChild(mBackground, 1);
+    mBackground = BackgroundScene::create();
+    this->addChild(mBackground, 1);
+    
+    
     
     // Hero設置
     mHero = Hero::create();

@@ -24,6 +24,9 @@ using namespace cocostudio;
 using namespace ui;
 using namespace extension;
 
+#define MAP_1_Tag 1
+#define MAP_2_Tag 2
+
 class BackgroundScene:public cocos2d::Layer
 {
 public:
@@ -56,6 +59,9 @@ protected:
     void move(cocos2d::Sprite* bg_1, cocos2d::Sprite* bg_2, float vxScale);
     
 private:
+    void update(float time);
+    virtual void onExit();
+    
     // 移動速度
     float vx;
     

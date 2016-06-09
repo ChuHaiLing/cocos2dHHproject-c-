@@ -50,7 +50,9 @@ void Hero::addFlyAction()
 //    auto hero = Sprite::create("Resources/hero/fly_0001.png");
 //    this->addChild(hero, 2);
     Vector<SpriteFrame*>frameList;
+    
     auto spriteFrameCache = SpriteFrameCache::getInstance();
+    
     char fileName[256] = {0};
     
     for(int i = 1; i <= 20; i++)

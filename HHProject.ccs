@@ -86,8 +86,8 @@
             <Image Name="watchout_005.png" />
           </Folder>
         </Folder>
-        <Project Name="StartScene.csd" Type="Scene" />
         <Project Name="MainScene.csd" Type="Scene" />
+        <Project Name="StartScene.csd" Type="Scene" />
       </RootFolder>
     </Group>
   </SolutionFolder>

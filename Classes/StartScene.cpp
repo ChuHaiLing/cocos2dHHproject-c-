@@ -72,7 +72,7 @@ bool StartScene::init()
     boxSound->addEventListener(CC_CALLBACK_2(StartScene::CheckBoxOnTouncListener, this));
     
     //    // sound動畫
-    //    addSoundAnime();
+        addSoundAnime();
     
     // Move to point
     addHeroAndBtnAction();
@@ -178,42 +178,45 @@ cocos2d::Action* StartScene::createSineAction(float time, float dist)
 // sound圖動畫。
 void StartScene::addSoundAnime()
 {
-    //    // 創建動畫。
-    //    Vector<SpriteFrame*> frameList(3);
-    //
-    //    SpriteFrame* frmae = nullptr;
-    //
-    //    // 因為有3張圖，因此此處用for循環。
-    //    for(int i = 1; i <= 3; i++)
-    //    {
-    //        //
-    //        char fileName[100] = {0};
-    //        sprintf(fileName, "src/img_snd_on_%03d.png", i);
-    //        frmae = SpriteFrameCache::getInstance()->getSpriteFrameByName(fileName);
-    //        frameList.pushBack(frmae);
-    //    }
-    //
-    //    // 動畫腳本。
-    //    auto* anim = Animation::createWithSpriteFrames(frameList, 0.1f);
-    //
-    //    // 動畫
-    //    auto* animCreate = Animate::create(anim);
-    //
-    //    // 重複播放
-    //    auto* rep = RepeatForever::create(animCreate);
+    // 創建動畫。
+    Vector<SpriteFrame*> frameList(3);
+    auto spriteFrameCache = SpriteFrameCache::getInstance();
+   
+    char fileName[100] = {0};
+   
+    // 因為有3張圖，因此此處用for循環。
+    for(int i = 1; i <= 3; i++)
+    {
+        sprintf(fileName, "Resources/textures/img_snd_on_%03d.png", i);
     
-    //    //
-    //    auto* boxSound = dynamic_cast<CheckBox*>(layer->getChildByName("checkBox_btn"));
-    //    //boxSound->loadTextureBackGround("Resources/res/Resources/textures/img_snd_on_001.png");
+        SpriteFrame *frame = SpriteFrame::create(fileName, Rect(0, 0, 40, 40));
+    
+        // 加入SpriteFrameCache中
+        spriteFrameCache->addSpriteFrame(frame, fileName);
+        frameList.pushBack(frame);
+    }
+    
+    // 動畫腳本。
+    auto* anim = Animation::createWithSpriteFrames(frameList, 0.1f);
+    
+    // 動畫
+    auto* animCreate = Animate::create(anim);
+    
+    // 重複播放
+    auto* rep = RepeatForever::create(animCreate);
+    
     //
-    //    //
-    //    auto* sp = Sprite::create();
+    auto* boxSound = dynamic_cast<CheckBox*>(layer->getChildByName("checkBox_btn"));
+    //boxSound->loadTextureBackGround("Resources/res/Resources/textures/img_snd_on_001.png");
+    
     //
-    //    // 創圖
-    //    boxSound->addChild(sp);
-    //    
-    //    // 錨點
-    //    sp->setAnchorPoint(Vec2::ZERO);
-    //
-    //    sp->runAction(rep);
+    auto* sp = Sprite::create();
+    
+    // 創圖
+    boxSound->addChild(sp);
+    
+    // 錨點
+    sp->setAnchorPoint(Vec2::ZERO);
+    
+    sp->runAction(rep);
 }
