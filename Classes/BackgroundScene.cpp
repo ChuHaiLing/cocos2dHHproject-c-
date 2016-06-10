@@ -8,6 +8,9 @@
 
 #include "BackgroundScene.h"
 
+// 捲軸滑動速度的賦予值
+const int BackgroundScene::MOVE_X_SPEED = 10;
+
 BackgroundScene::BackgroundScene()
 {
 }
@@ -15,11 +18,6 @@ BackgroundScene::BackgroundScene()
 BackgroundScene::~BackgroundScene()
 {
 }
-
-////
-//const float BackgroundScene::MOVE_VX_MIN = 10;
-//const float BackgroundScene::MOVE_VX_MAX = 30;
-//const float BackgroundScene::MAP_WIDTH = 1334;      // 1334
 
 Scene* BackgroundScene::createScene()
 {
@@ -38,66 +36,27 @@ Scene* BackgroundScene::createScene()
 
 bool BackgroundScene::init()
 {
-    Layer::init();
-//    if(!Layer::init())
-//    {
-//        return false;
-//    }
+    if(!Layer::init())
+    {
+        return false;
+    }
     
-//    // 捲軸地圖紋理
-//    mScrollDict["bg_001_1"] = Sprite::createWithSpriteFrameName("Resources/background/bg_001.png");
-//    mScrollDict["bg_001_2"] = Sprite::createWithSpriteFrameName("Resources/background/bg_001.png");
-//    
-//    mScrollDict["bg_002_1"] = Sprite::createWithSpriteFrameName("Resources/background/bg_002.png");
-//    mScrollDict["bg_002_2"] = Sprite::createWithSpriteFrameName("Resources/background/bg_002.png");
-//    
-//    mScrollDict["bg_003_1"] = Sprite::createWithSpriteFrameName("Resources/background/bg_003.png");
-//    mScrollDict["bg_003_2"] = Sprite::createWithSpriteFrameName("Resources/background/bg_003.png");
-//
-//    mScrollDict["bg_004_1"] = Sprite::createWithSpriteFrameName("Resources/background/bg_004.png");
-//    mScrollDict["bg_004_2"] = Sprite::createWithSpriteFrameName("Resources/background/bg_004.png");
-//    
-//    this->addChild(mScrollDict["bg_001_1"], 1);
-//    this->addChild(mScrollDict["bg_001_2"], 1);
-//    
-//    this->addChild(mScrollDict["bg_002_1"], 2);
-//    this->addChild(mScrollDict["bg_002_2"], 2);
-//    
-//    this->addChild(mScrollDict["bg_003_1"], 3);
-//    this->addChild(mScrollDict["bg_003_2"], 3);
-//    
-//    this->addChild(mScrollDict["bg_004_1"], 4);
-//    this->addChild(mScrollDict["bg_004_2"], 4);
-//    
-//    mScrollDict["bg_001_1"]->setAnchorPoint(Vec2::ZERO);
-//    mScrollDict["bg_001_2"]->setAnchorPoint(Vec2::ZERO);
-//    
-//    mScrollDict["bg_002_1"]->setAnchorPoint(Vec2::ZERO);
-//    mScrollDict["bg_002_2"]->setAnchorPoint(Vec2::ZERO);
-//    
-//    mScrollDict["bg_003_1"]->setAnchorPoint(Vec2::ZERO);
-//    mScrollDict["bg_003_2"]->setAnchorPoint(Vec2::ZERO);
-//    
-//    mScrollDict["bg_004_1"]->setAnchorPoint(Vec2::ZERO);
-//    mScrollDict["bg_004_2"]->setAnchorPoint(Vec2::ZERO);
-//    
-//    mScrollDict["bg_001_2"]->setPositionX(MAP_WIDTH);
-//    mScrollDict["bg_002_2"]->setPositionX(MAP_WIDTH);
-//    mScrollDict["bg_003_2"]->setPositionX(MAP_WIDTH);
-//    mScrollDict["bg_004_2"]->setPositionX(MAP_WIDTH);
-//    
-//    vx = MOVE_VX_MIN;
-//    
-//    layer = CSLoader::createNode("BackgroundScene.csb");
-//    this->addChild(layer);
+    // 獲得視窗大小
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
-    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+    // get script
+    auto map1 = Sprite::create("Resources/background/bg_001.png");
+    auto map2 = Sprite::create("Resources/background/bg_001.png");
     
-    CCSprite* map1 = CCSprite::create("Resources/background/bg_001.png");
-    CCSprite* map2 = CCSprite::create("Resources/background/bg_001.png");
-    map1->setPosition(ccp(map1->getContentSize().width/2 + origin.x, map1->getContentSize().height/2 + origin.y));
-    map2->setPosition(ccp(map2->getContentSize().width/2 + origin.x + map2->getContentSize().width, map2->getContentSize().height/2 + origin.y));
+    // 設置第一張圖片的位置
+    map1->setPosition(ccp(map1->getContentSize().width/2 + origin.x,
+                          map1->getContentSize().height/2 + origin.y));
+    
+    // 第二張圖片的位置於第一張的位置之後( x + x.size)
+    map2->setPosition(ccp(map2->getContentSize().width/2 + origin.x + map2->getContentSize().width,
+                          map2->getContentSize().height/2 + origin.y));
+    
     this->addChild(map1, 0, MAP_1_Tag);
     this->addChild(map2, 0, MAP_2_Tag);
     this->scheduleUpdate();
@@ -105,77 +64,52 @@ bool BackgroundScene::init()
     return true;
 }
 
-
-
+// scrore update
 void BackgroundScene::update(float time)
 {
-    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
-    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+    // windo size
+    Size visibleSize = Director::getInstance()->getVisibleSize();
     
-    CCSprite* temMap1 = (CCSprite*)this->getChildByTag(MAP_1_Tag);
-    CCSprite* temMap2 = (CCSprite*)this->getChildByTag(MAP_2_Tag);
+    // 可視原點的座標
+    Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
-    temMap1->setPositionX(temMap1->getPositionX() - 10);
-    temMap2->setPositionX(temMap2->getPositionX() - 10);
+    // get script
+    auto temMap1 = this->getChildByTag(MAP_1_Tag);
+    auto temMap2 = this->getChildByTag(MAP_2_Tag);
     
+    // pos = x -10 -> make score
+    temMap1->setPositionX(temMap1->getPositionX() - MOVE_X_SPEED);
+    temMap2->setPositionX(temMap2->getPositionX() - MOVE_X_SPEED);
+    
+    // 當圖片1的位置 < 可視原點，
     if(temMap1->getPositionX() + temMap1->getContentSize().width/2 <= origin.x)
     {
+        // 偏移 ＝ 圖片的x軸 ＋ 寬 - 可視圓點的x軸
         float offset = temMap1->getPositionX() + temMap1->getContentSize().width/2 - origin.x;
-        temMap1->setPosition(ccp(temMap1->getContentSize().width/2 + origin.x + visibleSize.width + offset, visibleSize.height/2 + origin.y));
+        
+        // 設置圖片1的位置到圖片2之後
+        // ccp(a, b) = ccpoint(x, y)：既可以表示座標點，又可以表示一個向量。
+        // getContentSize() = 此函數來獲得原始節點的大小，只是邏輯尺寸，不是像素大小。
+        // x = (getContentSize()原始節點的大小)寬 / 2 ＋ 可視點的寬 ＋ ()
+        temMap1->setPosition(ccp(temMap1->getContentSize().width / 2 +
+                                 origin.x + visibleSize.width + offset,
+                                 visibleSize.height/2 + origin.y));
     }
     
+    // 當圖片2的位置 < 可視原點
     if(temMap2->getPositionX() + temMap2->getContentSize().width/2 <= origin.x)
     {
         float offset = temMap2->getPositionX() + temMap2->getContentSize().width/2 - origin.x;
-        temMap2->setPosition(ccp(temMap2->getContentSize().width/2 + origin.x + visibleSize.width + offset, visibleSize.height/2 + origin.y));
+        
+        temMap2->setPosition(ccp(temMap2->getContentSize().width/2 +
+                                 origin.x + visibleSize.width + offset,
+                                 visibleSize.height/2 + origin.y));
     }
 }
 
+// 停止捲軸滑動
 void BackgroundScene::onExit()
 {
     this->unscheduleUpdate();
     CCLayer::onExit();
 }
-
-
-//// 定時器
-//void BackgroundScene::step(float dt)
-//{
-//    move(mScrollDict["bg_001_1"], mScrollDict["bg_001_2"], 0.5f);
-//    move(mScrollDict["bg_002_1"], mScrollDict["bg_002_2"], 0.6f);
-//    move(mScrollDict["bg_003_1"], mScrollDict["bg_003_2"], 0.8f);
-//    move(mScrollDict["bg_004_1"], mScrollDict["bg_004_2"], 1.0f);
-//}
-//
-//// 設置地圖移動的速度
-//void BackgroundScene::setVx(float val)
-//{
-//    this->vx = val;
-//}
-//
-//// 獲取地圖速度
-//float BackgroundScene::getVx() const
-//{
-//    return vx;
-//}
-//
-//// 單圖移動
-//void BackgroundScene::move(cocos2d::Sprite* bg_1, cocos2d::Sprite* bg_2, float vxScale)
-//{
-//    log("move");
-//    float vx_1 = bg_1->getPositionX() - vx * vxScale;
-//    float vx_2 = bg_2->getPositionX() - vx * vxScale;
-//    
-//    // 出界的場合
-//    if(vx_1 <= -MAP_WIDTH)
-//    {
-//        vx_1 = vx_2 + MAP_WIDTH;
-//    }
-//    else if(vx_2 <= -MAP_WIDTH)
-//    {
-//        vx_2 = vx_1 + MAP_WIDTH;
-//    }
-//    
-//    bg_1->setPositionX(vx_1);
-//    bg_2->setPositionX(vx_2);
-//}

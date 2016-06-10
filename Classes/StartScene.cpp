@@ -71,8 +71,8 @@ bool StartScene::init()
     // checkBox的監聽
     boxSound->addEventListener(CC_CALLBACK_2(StartScene::CheckBoxOnTouncListener, this));
     
-    //    // sound動畫
-        addSoundAnime();
+    // sound動畫
+//        addSoundAnime();
     
     // Move to point
     addHeroAndBtnAction();

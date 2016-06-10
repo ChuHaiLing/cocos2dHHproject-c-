@@ -35,38 +35,16 @@ public:
     
     virtual bool init();
     CREATE_FUNC(BackgroundScene);
-    
+    void onExit();          // 離開
     static cocos2d::Scene* createScene();
-    
-    // 定時器
-    void step(float dt);
-    
-    // 設置地圖移動的速度
-    void setVx(float val);
-    
-    // 獲取地圖速度
-    float getVx() const;
-    
-    // 靜態的常量
-    static const float MOVE_VX_MIN;         // 最小速度
-    static const float MOVE_VX_MAX;         // 最大速度
-    static const float MAP_WIDTH;           // 地圖的寬度
     
 protected:
     cocos2d::Node* layer;
     
-    // 單圖移動
-    void move(cocos2d::Sprite* bg_1, cocos2d::Sprite* bg_2, float vxScale);
-    
 private:
-    void update(float time);
-    virtual void onExit();
-    
-    // 移動速度
-    float vx;
-    
-    // 地圖紋理字典
-    std::map<std::string, cocos2d::Sprite*> mScrollDict;
+    void update(float time);        // 更新速度
+//    virtual void onExit();          // 離開
+    static const int MOVE_X_SPEED;  // 捲軸速度
 };
 
 

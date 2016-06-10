@@ -31,7 +31,9 @@ void AppDelegate::initGLContextAttrs()
 bool AppDelegate::applicationDidFinishLaunching() {
     // 初始化director(導演，負責場景切換等。掌控Scene的一切)
     auto director = Director::getInstance();
+    // 使用OpenGL view
     auto glview = director->getOpenGLView();
+    
     if(!glview) {
         glview = GLViewImpl::createWithRect("HungryHeroProject", Rect(0, 0, 1334, 755));
         director->setOpenGLView(glview);
@@ -67,19 +69,25 @@ bool AppDelegate::applicationDidFinishLaunching() {
     return true;
 }
 
-// 當進入遊戲後台時會掉用此方法。
+// 切換到後台 / 當進入遊戲後台時會調用此方法。
 // 比如玩遊戲時按下home鍵 or 玩遊戲時電話打入直接顯示來電界面。
 void AppDelegate::applicationDidEnterBackground() {
+    
+    // 暫停遊戲
+    // 如果你的遊戲用了sompleAudioEngine，必須在這裡進行暫停。
     Director::getInstance()->stopAnimation();
     
-    // 如果你的遊戲用了sompleAudioEngine，必須在這裡進行暫停。
-    // 代碼如下：SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+    // 暫停音樂（未測試）
+    // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 }
 
-// 當遊戲恢復到前台運行時會掉用此方法。
+// 切換到前台 / 當遊戲恢復到前台運行時會掉用此方法。
 void AppDelegate::applicationWillEnterForeground() {
+    
+    // 遊戲恢復
     Director::getInstance()->startAnimation();
     
-    // 如果你的遊戲用了sompleAudioEngine，必須在這裡進行暫停。
-    // 代碼如下： SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+    
+    // 音樂恢復
+    //SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }

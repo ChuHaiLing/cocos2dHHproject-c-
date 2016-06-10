@@ -50,9 +50,7 @@ public:
     void updateDateView();
     
 protected:
-    cocos2d::ui::Widget* uiLayer;
     cocos2d::Node* layer;
-    
     cocos2d::ui::CheckBox* boxSound;
     cocos2d::ui::TextBMFont* fontLive;
     cocos2d::ui::TextBMFont* fontDist;
@@ -85,7 +83,10 @@ protected:
     // 螢幕的Size
     cocos2d::Size winSize;
     
-    float shakeTime;
+    float shakeTime = 0.0f;
+    
+private:
+    static const float START_POINT;
 };
 
 #endif /* MainGameScene_hpp */
