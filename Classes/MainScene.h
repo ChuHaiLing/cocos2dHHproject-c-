@@ -12,6 +12,8 @@
 #include "cocos2d.h"
 #include "BackgroundScene.h"
 #include "Hero.h"
+#include "Food.h"
+#include "ObjectPool.h"
 
 // 引入cocostuido文件, 完成ui環境配置
 #include "extensions/cocos-ext.h"
@@ -84,6 +86,9 @@ protected:
     cocos2d::Size winSize;
     
     float shakeTime = 0.0f;
+    
+    //
+    ObjectPool<Food>* mObjectPool;
     
 private:
     static const float START_POINT;

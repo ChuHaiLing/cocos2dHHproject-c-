@@ -79,6 +79,9 @@ bool MainScene::init()
     
     // 註冊事件
     addAllEventListener();
+    
+    // 對象池的初始化
+    mObjectPool = ObjectPool<Food>::getInstance();
 
     return true;
 }
@@ -174,6 +177,22 @@ void MainScene::startGame()
     // 定時的調用此函數(開始遊戲時間主循環)
     this->schedule(SEL_SCHEDULE(&MainScene::gameStep),
                                 0.02f);                     // 循環時間
+    
+    Food* food = nullptr;
+    for(int i; i < 10; i++)
+    {
+        food = mObjectPool->takeout();
+        this->addChild(food, 7);
+        food->setPosition(CCRANDOM_0_1() * 1000, CCRANDOM_0_1() * 600 + 50);
+        food->set(CCRANDOM_0_1() > 0.5 ? FoodType::FOOD_COOMON : FOOD_MUSHROOM);
+        
+        auto* callback = CallFunc::create([=]()
+        {
+            food->reset();
+            mObjectPool->recycle(food);
+        });
+        food->runAction(Sequence::create(DelayTime::create(2.5f), callback, nullptr));
+    }
 }
 
 // onEnterTransitionDidFinish ＝ 在完全進入場景後才開始函數內容

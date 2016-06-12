@@ -49,6 +49,10 @@
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		67264650BD08F5A9E8B7ED1D /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D65417CAF89D7ADE4119FEC /* libcocos2d iOS.a */; };
 		6CC743B7AEC6C4A1F5FEC304 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 01F741B993AED8B544209AD5 /* res */; };
+		6E7787E61D0C329A002D4D2C /* ObjectPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E7787E41D0C329A002D4D2C /* ObjectPool.cpp */; };
+		6E7787E71D0C329A002D4D2C /* ObjectPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E7787E41D0C329A002D4D2C /* ObjectPool.cpp */; };
+		6E9432EF1D0D1A270040002C /* Food.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E9432ED1D0D1A270040002C /* Food.cpp */; };
+		6E9432F01D0D1A270040002C /* Food.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E9432ED1D0D1A270040002C /* Food.cpp */; };
 		6ECB6D6E1D0312A80020F11F /* StartScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6ECB6D6C1D0312A80020F11F /* StartScene.cpp */; };
 		6ECB6D711D0323F50020F11F /* MainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6ECB6D6F1D0323F50020F11F /* MainScene.cpp */; };
 		6ECC39F01D03A65400461A55 /* BackgroundScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6ECC39EE1D03A65400461A55 /* BackgroundScene.cpp */; };
@@ -111,6 +115,10 @@
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		5D65417CAF89D7ADE4119FEC /* libcocos2d iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d iOS.a"; path = "/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/prebuilt/ios/libcocos2d iOS.a"; sourceTree = "<absolute>"; };
+		6E7787E41D0C329A002D4D2C /* ObjectPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectPool.cpp; sourceTree = "<group>"; };
+		6E7787E51D0C329A002D4D2C /* ObjectPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectPool.h; sourceTree = "<group>"; };
+		6E9432ED1D0D1A270040002C /* Food.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Food.cpp; sourceTree = "<group>"; };
+		6E9432EE1D0D1A270040002C /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
 		6ECB6D6C1D0312A80020F11F /* StartScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StartScene.cpp; sourceTree = "<group>"; };
 		6ECB6D6D1D0312A80020F11F /* StartScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScene.h; sourceTree = "<group>"; };
 		6ECB6D6F1D0323F50020F11F /* MainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainScene.cpp; sourceTree = "<group>"; };
@@ -261,6 +269,10 @@
 				6ECB6D6D1D0312A80020F11F /* StartScene.h */,
 				6ECC39F11D03B27F00461A55 /* Hero.cpp */,
 				6ECC39F21D03B27F00461A55 /* Hero.h */,
+				6E7787E41D0C329A002D4D2C /* ObjectPool.cpp */,
+				6E7787E51D0C329A002D4D2C /* ObjectPool.h */,
+				6E9432ED1D0D1A270040002C /* Food.cpp */,
+				6E9432EE1D0D1A270040002C /* Food.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -437,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E7787E61D0C329A002D4D2C /* ObjectPool.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
@@ -445,6 +458,7 @@
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				6ECC39F01D03A65400461A55 /* BackgroundScene.cpp in Sources */,
 				6ECC39F31D03B27F00461A55 /* Hero.cpp in Sources */,
+				6E9432EF1D0D1A270040002C /* Food.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +466,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E7787E71D0C329A002D4D2C /* ObjectPool.cpp in Sources */,
+				6E9432F01D0D1A270040002C /* Food.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 			);
