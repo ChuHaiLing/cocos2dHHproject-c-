@@ -14,6 +14,7 @@
 #include "Hero.h"
 #include "Food.h"
 #include "ObjectPool.h"
+#include "ObjStar.h"
 
 // 引入cocostuido文件, 完成ui環境配置
 #include "extensions/cocos-ext.h"

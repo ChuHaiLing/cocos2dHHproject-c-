@@ -178,21 +178,34 @@ void MainScene::startGame()
     this->schedule(SEL_SCHEDULE(&MainScene::gameStep),
                                 0.02f);                     // 循環時間
     
-    Food* food = nullptr;
-    for(int i = 0; i < 10; i++)
+    
+    
+    
+    
+    // test
+    // 古いやり方で
+    auto* stars1 = Array::createWithCapacity(5);
+    auto* stars2 = Array::createWithCapacity(5);
+    
+    for(int i = 0; i < 5; i ++)
     {
-        food = mObjectPool->takeout();
-        this->addChild(food, 7);
-        food->setPosition(CCRANDOM_0_1() * 1000, CCRANDOM_0_1() * 600 + 50);
-        food->set(CCRANDOM_0_1() > 0.5 ? FoodType::FOOD_COOMON : FOOD_MUSHROOM);
+        ObjStar* objStar = new ObjStar();
+        objStar->setPosition(ccp(100 * i, 200));
         
-        auto* callback = CallFunc::create([=]()
-        {
-            food->reset();
-            mObjectPool->recycle(food);
-        });
-        food->runAction(Sequence::create(DelayTime::create(2.5f), callback, nullptr));
+        stars1->addObject(objStar);
+        objStar->addChild(objStar, 7);
+        
+//        obj = new GameObjStar();
+//        obj->setPosition(ccp(172 + 192 * i, 350));
+//        stars2->addObject(obj);
+//        bg2->addChild(obj,1);
     }
+    stars1->retain();
+    stars2->retain();
+    
+    
+    
+    
 }
 
 // onEnterTransitionDidFinish ＝ 在完全進入場景後才開始函數內容
