@@ -179,7 +179,7 @@ void MainScene::startGame()
                                 0.02f);                     // 循環時間
     
     Food* food = nullptr;
-    for(int i; i < 10; i++)
+    for(int i = 0; i < 10; i++)
     {
         food = mObjectPool->takeout();
         this->addChild(food, 7);

@@ -45,15 +45,15 @@ public:
     void recycle(T* obj);
     
 private:
-    ObjectPool(){};                                 // 函數重載
-    ObjectPool(const ObjectPool<T>& src){};         // 函數重載
+    ObjectPool(){};                                     // 函數重載
+    ObjectPool(const ObjectPool<T>& src){};             // 函數重載
     ObjectPool<T>& operator=(const ObjectPool<T>& src){};
     
-    static ObjectPool<T>* instance;                 // 靜態變量
-    void allocate();                                // 申請內存塊，預備對象（創建指定個數的對象內存）
+    static ObjectPool<T>* instance;                     // 靜態變量
+    void allocate();                                    // 申請內存塊，創建預備對象（創建指定個數的對象內存）
     void disposeObjectArray(std::vector<T*>* objArrary);// 釋放內存塊
-    std::queue<T*>mPoolList;                        //當有申請時（allocate），獲取此空閒列表
-    std::vector<std::vector<T*>*>mAllObjectList;    // 內存快管理池
+    std::queue<T*>mPoolList;                            // 當有申請時（allocate），獲取此空閒列表
+    std::vector<std::vector<T*>*>mAllObjectList;        // 內存快管理池
     
     // 靜態常量，默認創建多少對象
     static const int DEFZULT_SIZE;
@@ -84,7 +84,7 @@ void ObjectPool<T>::allocate()
     // 塊
     std::vector<T*>* newObjcetList = new std::vector<T*>(DEFZULT_SIZE);
     
-    for(int i; i < DEFZULT_SIZE; i++)
+    for(int i = 0; i < DEFZULT_SIZE; i++)
     {
         (*newObjcetList)[i] = T::create();
         (*newObjcetList)[i]->retain();
@@ -93,7 +93,7 @@ void ObjectPool<T>::allocate()
     mAllObjectList.push_back(newObjcetList);
     
     // 空閒池
-    for(int i; i < DEFZULT_SIZE; i++)
+    for(int i = 0; i < DEFZULT_SIZE; i++)
     {
         mPoolList.push((*newObjcetList)[i]);
     }

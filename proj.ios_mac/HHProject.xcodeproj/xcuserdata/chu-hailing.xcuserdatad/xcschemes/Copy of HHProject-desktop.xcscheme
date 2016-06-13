@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-               BuildableName = "HHProject-mobile.app"
-               BlueprintName = "HHProject-mobile"
+               BlueprintIdentifier = "5087E73D17EB910900C73F5D"
+               BuildableName = "HHProject-desktop.app"
+               BlueprintName = "HHProject-desktop"
                ReferencedContainer = "container:HHProject.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "HHProject-mobile.app"
-            BlueprintName = "HHProject-mobile"
+            BlueprintIdentifier = "5087E73D17EB910900C73F5D"
+            BuildableName = "HHProject-desktop.app"
+            BlueprintName = "HHProject-desktop"
             ReferencedContainer = "container:HHProject.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,16 +55,20 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "HHProject-mobile.app"
-            BlueprintName = "HHProject-mobile"
+            BlueprintIdentifier = "5087E73D17EB910900C73F5D"
+            BuildableName = "HHProject-desktop.app"
+            BlueprintName = "HHProject-desktop"
             ReferencedContainer = "container:HHProject.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
+            argument = "MallocStackLogging"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "NSZombieEnabled"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
@@ -80,9 +84,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "HHProject-mobile.app"
-            BlueprintName = "HHProject-mobile"
+            BlueprintIdentifier = "5087E73D17EB910900C73F5D"
+            BuildableName = "HHProject-desktop.app"
+            BlueprintName = "HHProject-desktop"
             ReferencedContainer = "container:HHProject.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

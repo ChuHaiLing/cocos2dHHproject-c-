@@ -87,7 +87,7 @@ protected:
     
     float shakeTime = 0.0f;
     
-    //
+    // 獲取物體池
     ObjectPool<Food>* mObjectPool;
     
 private:

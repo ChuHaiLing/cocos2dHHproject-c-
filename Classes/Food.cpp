@@ -18,7 +18,7 @@ Food::~Food()
 // 設置類型
 void Food::set(const FoodType& type)
 {
-//    const FoodType& type = FOOD_COOMON;
+    char cFilePath[20] = {0};
     int foodFileName = 0;
     this->type = type;
     switch (FoodType::FOOD_COFFEE)
@@ -32,12 +32,12 @@ void Food::set(const FoodType& type)
         case FOOD_MUSHROOM:
             foodFileName = 7;
             break;
-        default:
-            break;
+//        default:
+//            break;
     }
-    char cFilePath[20];
-    sprintf(cFilePath, "Resources/item/food_%03d.png", foodFileName);
-    initWithSpriteFrameName(cFilePath);
+    sprintf(cFilePath, "item/food_%03d.png", foodFileName);
+    //Sprite::initWithSpriteFrameName(cFilePath);
+    Sprite::createWithSpriteFrameName(cFilePath);
 }
 
 // 處理回收的重置設置
